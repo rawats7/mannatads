@@ -76,25 +76,34 @@
     }
 
     .join-btn{
-      width:190px;
-      height:56px;
-      border-radius:40px;
-      background:#38aef0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      margin:auto;
-      text-decoration:none;
-      color:#fff;
-      font-size:17px;
-      font-weight:700;
-      transition:.3s;
-    }
+  width:220px;             /* bigger size */
+  height:60px;             /* original shape */
+  border-radius:30px;
+  background:#38aef0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:auto;
+  text-decoration:none;
+  color:#fff;
+  font-size:18px;
+  font-weight:700;
+  box-shadow:0 0 15px rgba(56,174,240,0.6);
+  animation: glow 1.5s infinite alternate;
+  transition:0.3s;
+}
 
-    .join-btn:hover{
-      background:#259fe5;
-    }
+.join-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 25px rgba(56,174,240,0.9);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
+  50% { box-shadow: 0 0 18px rgba(56,174,240,0.9); }
+  100% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
+}
 
     .telegram-icon{
       width:23px;
