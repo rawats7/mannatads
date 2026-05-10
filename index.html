@@ -1,58 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Telegram Landing Page</title>
+
   <style>
-    body { font-family: Arial, sans-serif; background: #dfeee3; display:flex; justify-content:center; align-items:center; min-height:100vh; }
-    .card { background: #fff; border-radius: 22px; padding:22px; max-width:380px; width:100%; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
-    .channel-name{font-size:34px;font-weight:800;margin-bottom:10px;}
-    .subscribers{color:#7b7b7b;margin-bottom:20px;}
-    .main-image{width:100%;height:380px;object-fit:cover;border-radius:18px;margin-bottom:25px;}
-    .description{font-size:26px;font-weight:800;margin-bottom:28px;}
-    .join-btn{display:flex;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#2db8ff,#1f95ff);color:#fff;text-decoration:none;font-size:24px;font-weight:700;height:72px;border-radius:60px;transition:.3s;box-shadow:0 8px 25px rgba(45,184,255,.35);}
-    .join-btn:hover{transform:translateY(-2px);}
-    .telegram-icon{width:34px;height:34px;}
-    .footer{margin-top:28px;color:#999;font-size:14px;line-height:1.6;}
-    .footer b{color:#666;}
-    @media(max-width:480px){
-      .channel-name{font-size:28px;}
-      .description{font-size:22px;}
-      .main-image{height:330px;}
-      .join-btn{height:68px;font-size:21px;}
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
+
+    body{
+      background:#dceadf;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:25px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .card{
+      width:100%;
+      max-width:365px;
+      background:#f7f7f7;
+      border-radius:18px;
+      padding:28px 18px 22px;
+      text-align:center;
+      box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    .channel-name{
+      font-family:Georgia, serif;
+      font-size:28px;
+      font-weight:700;
+      color:#111;
+      margin-bottom:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .flag{
+      width:18px;
+      height:18px;
+      object-fit:cover;
+    }
+
+    .subscribers{
+      color:#8a8a8a;
+      font-size:16px;
+      margin-bottom:20px;
+    }
+
+    .main-image{
+      width:100%;
+      height:360px;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:22px;
+    }
+
+    .description{
+      font-size:17px;
+      font-weight:700;
+      line-height:1.45;
+      color:#111;
+      text-transform:uppercase;
+      margin-bottom:22px;
+      padding:0 5px;
+    }
+
+    .join-btn{
+      width:190px;
+      height:56px;
+      border-radius:40px;
+      background:#38aef0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin:auto;
+      text-decoration:none;
+      color:#fff;
+      font-size:17px;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .join-btn:hover{
+      background:#259fe5;
+    }
+
+    .telegram-icon{
+      width:23px;
+      height:23px;
+    }
+
+    .footer{
+      margin-top:22px;
+      font-size:14px;
+      color:#9d9d9d;
+      line-height:1.6;
+    }
+
+    .footer b{
+      color:#777;
+      font-weight:700;
+    }
+
   </style>
 </head>
+
 <body>
+
   <div class="card">
-    <div class="channel-name" id="channelName"></div>
-    <div class="subscribers" id="subscribers"></div>
-    <img id="mainImage" class="main-image"/>
-    <div class="description" id="description"></div>
-    <a id="joinBtn" class="join-btn" target="_blank">
-      <img class="telegram-icon" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"/>
-      <span id="buttonText"></span>
+
+    <div class="channel-name" id="channelName">
+      HUNTER ARMY
+      <img
+        class="flag"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sri_Lanka.svg/1200px-Flag_of_Sri_Lanka.svg.png"
+      />
+    </div>
+
+    <div class="subscribers" id="subscribers">
+      100,120 subscribers
+    </div>
+
+    <img
+      id="mainImage"
+      class="main-image"
+      src=""
+    />
+
+    <div class="description" id="description">
+      WANT TO HAVE THIS LUXURY LIFE, THEN CLICK THE LINK BELOW TO JOIN NOW
+    </div>
+
+    <a
+      id="joinBtn"
+      class="join-btn"
+      href="#"
+      target="_blank"
+    >
+
+      <img
+        class="telegram-icon"
+        src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+      />
+
+      <span id="buttonText">
+        JOIN CHANNEL
+      </span>
+
     </a>
+
     <div class="footer">
-      You are invited to the channel <b id="footerName"></b>.<br>
+      You are invited to the channel
+      <b id="footerName">HUNTER ARMY</b>
+      🇱🇰.<br>
       Click above to join.
     </div>
+
   </div>
 
   <script>
-    fetch('channel.json')
+
+    fetch("channel.json")
       .then(response => response.json())
       .then(data => {
-        document.getElementById("channelName").innerText = data.channelName;
-        document.getElementById("subscribers").innerText = data.subscribers;
-        document.getElementById("mainImage").src = data.image;
-        document.getElementById("description").innerText = data.description;
-        document.getElementById("buttonText").innerText = data.buttonText;
-        document.getElementById("joinBtn").href = data.telegramLink;
-        document.getElementById("footerName").innerText = data.channelName;
-      })
-      .catch(err => console.error("Error loading JSON:", err));
+
+        document.getElementById("channelName").innerHTML =
+          `${data.channelName}
+          <img class="flag" src="${data.flag}">`;
+
+        document.getElementById("subscribers").innerText =
+          data.subscribers;
+
+        document.getElementById("mainImage").src =
+          data.image;
+
+        document.getElementById("description").innerText =
+          data.description;
+
+        document.getElementById("buttonText").innerText =
+          data.buttonText;
+
+        document.getElementById("joinBtn").href =
+          data.telegramLink;
+
+        document.getElementById("footerName").innerText =
+          data.channelName;
+
+      });
+
   </script>
+
 </body>
 </html>
