@@ -1,214 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>raj trader</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>raj trader</title>
 
-  <style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+        body {
+            background: #dceadf;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+        }
 
-    body{
-      background:#dceadf;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:25px;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+        .card {
+            width: 100%;
+            max-width: 380px;
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 30px 20px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10),
+                0 2px 6px rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s ease;
+        }
 
-    .card{
-      width:100%;
-      max-width:365px;
-      background:#f7f7f7;
-      border-radius:18px;
-      padding:28px 18px 22px;
-      text-align:center;
-      box-shadow:0 4px 18px rgba(0,0,0,0.08);
-    }
+        .card:hover {
+            transform: translateY(-4px);
+        }
 
-    .channel-name{
-      font-family:Georgia, serif;
-      font-size:28px;
-      font-weight:700;
-      color:#111;
-      margin-bottom:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
+        .channel-name {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+        }
 
-    .flag{
-      width:18px;
-      height:18px;
-      object-fit:cover;
-    }
+        .flag {
+            width: 22px;
+            height: 22px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
 
-    .subscribers{
-      color:#8a8a8a;
-      font-size:16px;
-      margin-bottom:20px;
-    }
+        .subscribers {
+            color: #8a8a8a;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.2px;
+        }
 
-    .main-image{
-      width:100%;
-      height:360px;
-      object-fit:cover;
-      border-radius:16px;
-      margin-bottom:22px;
-    }
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+        }
 
-    .description{
-      font-size:17px;
-      font-weight:700;
-      line-height:1.45;
-      color:#111;
-      text-transform:uppercase;
-      margin-bottom:22px;
-      padding:0 5px;
-    }
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
 
-    .join-btn{
-  width:220px;             /* bigger size */
-  height:60px;             /* original shape */
-  border-radius:30px;
-  background:#38aef0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin:auto;
-  text-decoration:none;
-  color:#fff;
-  font-size:18px;
-  font-weight:700;
-  box-shadow:0 0 15px rgba(56,174,240,0.6);
-  animation: glow 1.5s infinite alternate;
-  transition:0.3s;
-}
+        .image-wrapper:hover .main-image {
+            transform: scale(1.04);
+        }
 
-.join-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 25px rgba(56,174,240,0.9);
-}
+        .description {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #111;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            padding: 0 8px;
+            letter-spacing: 0.4px;
+        }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
-  50% { box-shadow: 0 0 18px rgba(56,174,240,0.9); }
-  100% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
-}
+        .join-btn {
+            width: 230px;
+            height: 62px;
+            border-radius: 31px;
+            background: linear-gradient(135deg, #38aef0, #2d93d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: auto;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 18px rgba(56, 174, 240, 0.55);
+            animation: glowPulse 2s infinite alternate;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-    .telegram-icon{
-      width:23px;
-      height:23px;
-    }
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(56, 174, 240, 0.85);
+            background: linear-gradient(135deg, #45b8f5, #3498db);
+        }
 
-    .footer{
-      margin-top:22px;
-      font-size:14px;
-      color:#9d9d9d;
-      line-height:1.6;
-    }
+        .join-btn:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
 
-    .footer b{
-      color:#777;
-      font-weight:700;
-    }
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(56, 174, 240, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 22px rgba(56, 174, 240, 0.85);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(56, 174, 240, 0.5);
+            }
+        }
 
-  </style>
+        .telegram-icon {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #9d9d9d;
+            line-height: 1.7;
+            letter-spacing: 0.2px;
+        }
+
+        .footer b {
+            color: #666;
+            font-weight: 700;
+        }
+
+        /* Subtle badge */
+        .verified-badge {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: #38aef0;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .verified-badge::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="card">
+    <div class="card">
 
-    <div class="channel-name" id="channelName">
-      HUNTER ARMY
-      <img
-        class="flag"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sri_Lanka.svg/1200px-Flag_of_Sri_Lanka.svg.png"
-      />
-    </div>
+        <!-- Channel Name + Flag -->
+        <div class="channel-name" id="channelName">
+            HUNTER ARMY
+            <img
+            class="flag"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sri_Lanka.svg/1200px-Flag_of_Sri_Lanka.svg.png"
+            alt="flag"
+            />
+        </div>
 
-    <div class="subscribers" id="subscribers">
-      10,000 subscribers
-    </div>
+        <!-- Subscriber Count -->
+        <div class="subscribers" id="subscribers">
+            10,000 subscribers
+        </div>
 
-    <img
-      id="mainImage"
-      class="main-image"
-      src="raj.jpg"
-    />
+        <!-- Main Image -->
+        <div class="image-wrapper">
+            <img
+            id="mainImage"
+            class="main-image"
+            src="raj.jpg"
+            alt="Luxury Lifestyle"
+            loading="eager"
+            />
+        </div>
 
-    <div class="description" id="description">
-      WANT TO HAVE THIS LUXURY LIFE, THEN CLICK THE LINK BELOW TO JOIN NOW
-    </div>
+        <!-- Description -->
+        <div class="description" id="description">
+            WANT TO HAVE THIS LUXURY LIFE, THEN CLICK THE LINK BELOW TO JOIN NOW
+        </div>
 
-    <a
-      id="joinBtn"
-      class="join-btn"
-      href="#"
-      target="_blank"
-    >
-
-      <img
+        <!-- Join Button -->
+        <a
+        id="joinBtn"
+        class="join-btn"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+        <img
         class="telegram-icon"
         src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-      />
-
-      <span id="buttonText">
-        JOIN CHANNEL
-      </span>
-
+        alt="Telegram"
+        />
+        <span id="buttonText">JOIN CHANNEL</span>
     </a>
 
+    <!-- Footer -->
     <div class="footer">
-      You are invited to the channel
-      <b id="footerName">HUNTER ARMY</b>
-      🇱🇰.<br>
-      Click above to join.
+        You are invited to the channel
+        <b id="footerName">HUNTER ARMY</b>
+        🇱🇰.<br />
+        Click above to join.
     </div>
 
-  </div>
+</div>
 
-  <script>
+<script>
+    // ──────────────────────────────────────
+    //  ALL DATA IS RIGHT HERE – NO JSON FILE NEEDED
+    //  Just edit the values below to update the card.
+    // ──────────────────────────────────────
+    const cardData = {
+        channelName: 'HUNTER ARMY',
+        flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sri_Lanka.svg/1200px-Flag_of_Sri_Lanka.svg.png',
+        subscribers: '10,000 subscribers',
+        image: 'raj.jpg',
+        description: 'WANT TO HAVE THIS LUXURY LIFE, THEN CLICK THE LINK BELOW TO JOIN NOW',
+        buttonText: 'JOIN CHANNEL',
+        telegramLink: '#', // ← Replace '#' with your actual Telegram invite link
+    };
 
-    fetch("channel.json")
-      .then(response => response.json())
-      .then(data => {
+    // ──────────────────────────────────────
+    //  POPULATE THE DOM
+    // ──────────────────────────────────────
+    (function populateCard() {
+        // Channel name + flag
+        const channelNameEl = document.getElementById('channelName');
+        channelNameEl.innerHTML = `
+        ${cardData.channelName}
+        <img class="flag" src="${cardData.flag}" alt="flag" />
+        `;
 
-        document.getElementById("channelName").innerHTML =
-          `${data.channelName}
-          <img class="flag" src="${data.flag}">`;
+        // Subscribers
+        document.getElementById('subscribers').textContent = cardData.subscribers;
 
-        document.getElementById("subscribers").innerText =
-          data.subscribers;
+        // Main image
+        document.getElementById('mainImage').src = cardData.image;
 
-        document.getElementById("mainImage").src =
-          data.image;
+        // Description
+        document.getElementById('description').textContent = cardData.description;
 
-        document.getElementById("description").innerText =
-          data.description;
+        // Button text
+        document.getElementById('buttonText').textContent = cardData.buttonText;
 
-        document.getElementById("buttonText").innerText =
-          data.buttonText;
+        // Telegram link
+        const joinBtn = document.getElementById('joinBtn');
+        joinBtn.href = cardData.telegramLink;
 
-        document.getElementById("joinBtn").href =
-          data.telegramLink;
-
-        document.getElementById("footerName").innerText =
-          data.channelName;
-
-      });
-
-  </script>
+        // Footer channel name
+        document.getElementById('footerName').textContent = cardData.channelName;
+    })();
+</script>
 
 </body>
 </html>
