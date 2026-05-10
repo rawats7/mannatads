@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Telegram Landing Page</title>
+  <title>raj bhai</title>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1634569774505611');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1634569774505611&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
   <style>
 
@@ -57,12 +74,18 @@
       margin-bottom:20px;
     }
 
-    .main-image{
+    .main-video{
       width:100%;
       height:360px;
-      object-fit:cover;
       border-radius:16px;
       margin-bottom:22px;
+      background:#000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+      font-weight:700;
+      font-size:18px;
     }
 
     .description{
@@ -76,34 +99,34 @@
     }
 
     .join-btn{
-  width:220px;             /* bigger size */
-  height:60px;             /* original shape */
-  border-radius:30px;
-  background:#38aef0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin:auto;
-  text-decoration:none;
-  color:#fff;
-  font-size:18px;
-  font-weight:700;
-  box-shadow:0 0 15px rgba(56,174,240,0.6);
-  animation: glow 1.5s infinite alternate;
-  transition:0.3s;
-}
+      width:220px;             
+      height:60px;             
+      border-radius:30px;
+      background:#38aef0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      margin:auto;
+      text-decoration:none;
+      color:#fff;
+      font-size:18px;
+      font-weight:700;
+      box-shadow:0 0 15px rgba(56,174,240,0.6);
+      animation: glow 1.5s infinite alternate;
+      transition:0.3s;
+    }
 
-.join-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 25px rgba(56,174,240,0.9);
-}
+    .join-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 25px rgba(56,174,240,0.9);
+    }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
-  50% { box-shadow: 0 0 18px rgba(56,174,240,0.9); }
-  100% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
-}
+    @keyframes glow {
+      0% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
+      50% { box-shadow: 0 0 18px rgba(56,174,240,0.9); }
+      100% { box-shadow: 0 0 8px rgba(56,174,240,0.6); }
+    }
 
     .telegram-icon{
       width:23px;
@@ -141,11 +164,10 @@
       100,120 subscribers
     </div>
 
-    <img
-      id="mainImage"
-      class="main-image"
-      src=""
-    />
+    <!-- Video placeholder -->
+    <div class="main-video" id="mainVideo">
+      VIDEO PLACEHOLDER
+    </div>
 
     <div class="description" id="description">
       WANT TO HAVE THIS LUXURY LIFE, THEN CLICK THE LINK BELOW TO JOIN NOW
@@ -179,35 +201,33 @@
   </div>
 
   <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
 
+    // Disable certain keyboard shortcuts
+    document.addEventListener('keydown', e => {
+      // F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J, Ctrl+U
+      if (e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(e.key.toUpperCase())) ||
+          (e.ctrlKey && e.key.toUpperCase() === 'U')) {
+        e.preventDefault();
+      }
+    });
+
+    // Load JSON data
     fetch("channel.json")
       .then(response => response.json())
       .then(data => {
-
         document.getElementById("channelName").innerHTML =
-          `${data.channelName}
-          <img class="flag" src="${data.flag}">`;
+          `${data.channelName} <img class="flag" src="${data.flag}">`;
 
-        document.getElementById("subscribers").innerText =
-          data.subscribers;
-
-        document.getElementById("mainImage").src =
-          data.image;
-
-        document.getElementById("description").innerText =
-          data.description;
-
-        document.getElementById("buttonText").innerText =
-          data.buttonText;
-
-        document.getElementById("joinBtn").href =
-          data.telegramLink;
-
-        document.getElementById("footerName").innerText =
-          data.channelName;
-
+        document.getElementById("subscribers").innerText = data.subscribers;
+        document.getElementById("mainVideo").innerText = data.videoPlaceholderText || "VIDEO PLACEHOLDER";
+        document.getElementById("description").innerText = data.description;
+        document.getElementById("buttonText").innerText = data.buttonText;
+        document.getElementById("joinBtn").href = data.telegramLink;
+        document.getElementById("footerName").innerText = data.channelName;
       });
-
   </script>
 
 </body>
